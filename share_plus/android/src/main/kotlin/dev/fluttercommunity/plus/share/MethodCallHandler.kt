@@ -15,10 +15,13 @@ internal class MethodCallHandler(
 
         // We don't attempt to return a result if the current API version doesn't support it
         val isWithResult =
-            Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1 &&
+                call.argument<Boolean>("requestAndroidShareResult") != false
 
         if (isWithResult)
             manager.setCallback(result)
+        else
+            manager.unavailable() // Finish any outstanding share before starting another.
 
         when (call.method) {
             "share" -> {

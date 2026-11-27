@@ -39,6 +39,7 @@ class MethodChannelShare extends SharePlatform {
     );
 
     final map = <String, dynamic>{
+      if (!params.requestAndroidShareResult) 'requestAndroidShareResult': false,
       if (params.text != null) 'text': params.text,
       if (params.subject != null) 'subject': params.subject,
       if (params.title != null) 'title': params.title,

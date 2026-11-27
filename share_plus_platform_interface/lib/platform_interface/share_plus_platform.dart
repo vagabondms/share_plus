@@ -142,6 +142,10 @@ class ShareParams {
   ///   Parameter ignored on other platforms.
   final List<CupertinoActivityType>? excludedCupertinoActivities;
 
+  /// Whether Android should request the selected share target.
+  /// When false, sharing returns [ShareResult.unavailable] after launch.
+  final bool requestAndroidShareResult;
+
   ShareParams({
     this.text,
     this.subject,
@@ -154,6 +158,7 @@ class ShareParams {
     this.downloadFallbackEnabled = true,
     this.mailToFallbackEnabled = true,
     this.excludedCupertinoActivities,
+    this.requestAndroidShareResult = true,
   });
 }
 

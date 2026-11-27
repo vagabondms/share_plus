@@ -61,6 +61,16 @@ void main() {
     verifyZeroInteractions(mockChannel);
   });
 
+  test('can disable the Android share result', () async {
+    await sharePlatform.share(
+      ShareParams(text: 'hello', requestAndroidShareResult: false),
+    );
+    verify(mockChannel.invokeMethod<String>('share', <String, dynamic>{
+      'text': 'hello',
+      'requestAndroidShareResult': false,
+    }));
+  });
+
   test('sharing origin sets the right params', () async {
     await sharePlatform.share(
       ShareParams(
